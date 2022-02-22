@@ -14,16 +14,19 @@
             padding: 20px;
             border-radius: 2px solid black;
         }
-        .col-md-6{
+        {{!-- .col-md-6{
             padding-left: 120px;
             padding-top: -30px;
-        }
+        } --}}
         .text-center{
             padding-right: 70px;
         }
         .heading{
             padding-left: 470px;
             padding-top: -180px;
+        }
+        .button{
+            margin-right: 300px;
         }
     </style>
 </head>
@@ -92,7 +95,7 @@
         <section>
             <h2 class="h1-responsive font-weight-bold heading my-5">Message Box</h2>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card text-black bg-success">
                         <div class="card-header text-white">
                             Rules to be followed for registering a query
@@ -106,15 +109,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <form method="post" action="/send-message">
                         <textarea placeholder="Enter Your Query Here..." class="text" type="text" name="messageInput" rows="10" cols="40" name="query"></textarea>
-                        <div class="text-center text-md-center">
-                            <button class="btn btn-primary button" type="submit">Send</button>
+                        <div class="text-center text-md-center button">
+                            <button class="btn btn-primary" type="submit">Send</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-3"></div>
+                {{!-- <div class="col-md-3"></div> --}}
         </section>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
