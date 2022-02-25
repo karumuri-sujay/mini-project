@@ -8,7 +8,7 @@ app.use(express.json());
 const router=express.Router();
 
 const accountSid = 'ACb107ee97899385cd835d9a4d134854ab';
-const authToken = 'b9d27310cb2c60b916633ce57b83cfb0';
+const authToken = '4f1922fb91eaa177c8da21cd42655b24';
 const twilio=require('twilio');
 
 
@@ -68,7 +68,8 @@ router.post("/send-message",(req,res)=>{
     const msg=req.body.messageInput;
     console.log(msg);
     let output=message(msg);
-    if(output){
+    console.log(output);
+    if(output===null){
         res.render("message",{
             message:"Message was not send. Try to send it again"
         });
@@ -76,9 +77,11 @@ router.post("/send-message",(req,res)=>{
     else{
         res.render("messageSent");
     }
+    // console.log(output);
+    // res.render("messageSent");
     // res.send("Message sent... Redirecting to Home Page");
     // res.render("index");
-})
+});
 
 //middle ware isLoggedIn
 router.get("/profile",authController.isLoggedIn,(req,res)=>{
@@ -93,14 +96,16 @@ router.get("/profile",authController.isLoggedIn,(req,res)=>{
     }
 });
 
-function message(msg){
+async function message(msg){
     const client = new twilio(accountSid, authToken);
     let sid;
-    client.messages.create({
+    await client.messages.create({
+        messagingServiceSid: 'MGd2421e9befe9b4b44525a75d9c33b0f9',
         body: msg,
         to: '+919182387304',
         from: '+18184084586',
-    }).then((message) => sid=message.sid);
+    }).then((message)=> sid=message.sid);
+    // console.log(sid);
     return sid;
 }
 
